@@ -4,7 +4,7 @@
 # x7fELF, x7fELF@gmail.com, 2016
 # GNU GPLv3
 
-# ./prepare_uboot arm arm-linux-gnueabihf- v2017.01 vexpress_ca9x4_defconfig -j 4
+# ./uboot_prepare arm arm-linux-gnueabihf- v2017.01 vexpress_ca9x4_defconfig -j 4
 
 uboot_arch=${1:-arm}
 uboot_cross_compile=${2:-arm-linux-gnueabihf-}
@@ -12,21 +12,21 @@ uboot_version=${3:-v2017.01}
 uboot_defconfig=${4:-vexpress_ca9x4_defconfig}
 uboot_jobs=${5:--j 12}
 
-uboot_do_fetch() {
+uboot_fetch() {
 	git clone git://git.denx.de/u-boot.git u-boot
 	pushd u-boot
 	git checkout tags/${uboot_version}
 }
 
-uboot_do_configure() {
+uboot_configure() {
 	make ARCH=${uboot_arch} CROSS_COMPILE=${uboot_cross_compile} ${uboot_defconfig}
 }
 
-uboot_do_build() {
+uboot_build() {
 	make ARCH=${uboot_arch} CROSS_COMPILE=${uboot_cross_compile} ${uboot_jobs}
 }
 
-uboot_do_fetch
-uboot_do_configure
-uboot_do_build
+uboot_fetch
+uboot_configure
+uboot_build
 
