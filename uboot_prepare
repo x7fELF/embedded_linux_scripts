@@ -10,7 +10,7 @@ uboot_arch=${1:-arm}
 uboot_cross_compile=${2:-arm-linux-gnueabihf-}
 uboot_version=${3:-2017.01}
 uboot_defconfig=${4:-vexpress_ca9x4_defconfig}
-uboot_jobs=${5:--j 12}
+uboot_build_jobs=${5:--j 12}
 
 uboot_fetch() {
 	wget ftp://ftp.denx.de/pub/u-boot/u-boot-${uboot_version}.tar.bz2
@@ -24,7 +24,7 @@ uboot_configure() {
 }
 
 uboot_build() {
-	make ARCH=${uboot_arch} CROSS_COMPILE=${uboot_cross_compile} ${uboot_jobs}
+	make ARCH=${uboot_arch} CROSS_COMPILE=${uboot_cross_compile} ${uboot_build_jobs}
 }
 
 uboot_fetch
