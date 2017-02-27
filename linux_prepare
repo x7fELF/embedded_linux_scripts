@@ -4,7 +4,7 @@
 # x7fELF, x7fELF@gmail.com, 2017
 # GNU GPLv3
 
-# ./linux_prepare arm arm-linux-gnueabihf- v4.10 vexpress_ca9x4_defconfig -j 4
+# ./linux_prepare arm arm-linux-gnueabihf- 4.10 vexpress_ca9x4_defconfig -j 4
 
 linux_arch=${1:-arm}
 linux_cross_compile=${2:-arm-linux-gnueabihf-}
