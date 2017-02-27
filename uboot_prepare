@@ -8,14 +8,15 @@
 
 uboot_arch=${1:-arm}
 uboot_cross_compile=${2:-arm-linux-gnueabihf-}
-uboot_version=${3:-v2017.01}
+uboot_version=${3:-2017.01}
 uboot_defconfig=${4:-vexpress_ca9x4_defconfig}
 uboot_jobs=${5:--j 12}
 
 uboot_fetch() {
-	git clone git://git.denx.de/u-boot.git u-boot
-	pushd u-boot
-	git checkout tags/${uboot_version}
+	wget ftp://ftp.denx.de/pub/u-boot/u-boot-${uboot_version}.tar.bz2
+	mkdir uboot
+	tar -xvf u-boot-${uboot_version}.tar.bz2 --directory=uboot/ --strip-components=1
+	pushd uboot
 }
 
 uboot_configure() {
