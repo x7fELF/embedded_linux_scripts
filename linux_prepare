@@ -4,13 +4,13 @@
 # x7fELF, x7fELF@gmail.com, 2017
 # GNU GPLv3
 
-# ./linux_prepare arm arm-linux-gnueabihf- 4.10 vexpress_defconfig -j 4
+# ./linux_prepare arm arm-linux-gnueabihf- 4.10 vexpress_defconfig 4
 
 linux_arch=${1:-arm}
 linux_cross_compile=${2:-arm-linux-gnueabihf-}
 linux_version=${3:-4.10}
 linux_defconfig=${4:-vexpress_defconfig}
-linux_build_jobs=${5:--j 12}
+linux_build_jobs=${5:-12}
 
 linux_fetch() {
 	wget https://cdn.kernel.org/pub/linux/kernel/v4.x/linux-${linux_version}.tar.xz
@@ -24,7 +24,7 @@ linux_configure() {
 }
 
 linux_build() {
-	make ARCH=${linux_arch} CROSS_COMPILE=${linux_cross_compile} ${linux_build_jobs}
+	make ARCH=${linux_arch} CROSS_COMPILE=${linux_cross_compile} -j ${linux_build_jobs}
 }
 
 linux_fetch
