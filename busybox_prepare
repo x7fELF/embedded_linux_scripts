@@ -1,0 +1,33 @@
+#!/bin/bash
+
+# Fetch, configure, and build busybox (www.busybox.net)
+# x7fELF, x7fELF@gmail.com, 2016
+# GNU GPLv3
+
+# ./busybox_prepare arm arm-linux-gnueabihf- 1.26.2 defconfig 4
+
+busybox_arch=${1:-arm}
+busybox_cross_compile=${2:-arm-linux-gnueabihf-}
+busybox_version=${3:-1.26.2}
+busybox_defconfig=${4:-defconfig}
+busybox_build_jobs=${5:-12}
+
+busybox_fetch() {
+	wget https://www.busybox.net/downloads/busybox-${busybox_version}.tar.bz2
+	mkdir busybox
+	tar -xvf busybox-${busybox_version}.tar.bz2 --directory=busybox/ --strip-components=1
+	pushd busybox
+}
+
+busybox_configure() {
+	make ARCH=${busybox_arch} CROSS_COMPILE=${busybox_cross_compile} ${busybox_defconfig}
+}
+
+busybox_build() {
+	make ARCH=${busybox_arch} CROSS_COMPILE=${busybox_cross_compile} install -j ${busybox_build_jobs}
+}
+
+busybox_fetch
+busybox_configure
+busybox_build
+
