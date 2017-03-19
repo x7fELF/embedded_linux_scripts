@@ -2,7 +2,7 @@
 
 # Fetch, configure, and build Linux (https://github.com/torvalds/linux.git)
 # x7fELF, x7fELF@gmail.com, 2017
-# GNU GPLv3
+# GNU GPL v2
 
 # ./linux_prepare arm arm-linux-gnueabihf- 4.10 vexpress_defconfig 4
 

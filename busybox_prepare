@@ -2,7 +2,7 @@
 
 # Fetch, configure, and build busybox (www.busybox.net)
 # x7fELF, x7fELF@gmail.com, 2016
-# GNU GPLv3
+# GNU GPL v2
 
 # ./busybox_prepare arm arm-linux-gnueabihf- 1.26.2 defconfig 4
 
